@@ -58,15 +58,14 @@ ol {
   justify-content: center;
   align-items: end;
   inline-size: 1140px;
-  block-size: 534px;
-  column-gap: 30px;
+  column-gap: 28px;
 }
 
 .result__video-container {
   position: relative;
   width: 711px;
   height: 386px;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 .result__video {
@@ -103,21 +102,23 @@ ol {
 .search-form__label {
   display: flex;
   width: fit-content;
+  align-items: center;
+  gap: 3px;
 }
 
 input {
   width: 225px;
   background-color: transparent;
   border: none;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
   appearance: none;
   color: #fff;
 }
 
 .search-form__textfield {
-  font-family: font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 16px;
+  font-family: inherit;
+  font-size: inherit;
   line-height: 22px;
 }
 
@@ -125,7 +126,7 @@ input {
   outline: none;
 }
 
-/* Разобраться почему не работает */
+/* Разобраться почему не работает. Потому что для инпута focus-visible срабатывает как обычный focus */
 .search-form__label:has(:focus-visible) {
   outline: 1px solid #fff;
 }
@@ -141,7 +142,7 @@ input {
   align-items: center;
   width: 19px;
   height: 19px;
-  border: 1px solid #fff;
+  border: 1px solid currentColor;
   margin-right: 2px;
 }
 
@@ -158,16 +159,16 @@ input {
   }
 
   /* Подчеркивание у лейблов при наведение, кроме первого */
-  .search-form__fieldset:nth-child(n+2) .search-form__label:hover {
+  .search-form__label:hover .search-form__label-text {
     text-decoration: underline;
     cursor: pointer;
   }
   
   .button {
     font-weight: 700;
-    font-size: 18px;
+    font-size: inherit;
     background-color: transparent;
-    border: 1px solid #fff;
+    border: 1px solid currentColor;
     color: #fff;
   }
 
@@ -201,7 +202,7 @@ input {
   justify-content: flex-end;
   width: 100%;
   height: 100%;
-  gap: 26px;
+  gap: 22px;
   max-inline-size: 399px;
 }
 
@@ -209,7 +210,7 @@ input {
   font-family: Oswald, sans-serif;
   font-size: 75px;
   text-transform: uppercase;
-  line-height: 68px;
+  line-height: 94%;
   color: #fff;
 }
 
@@ -228,10 +229,11 @@ input {
   display: flex;
   flex-direction: column;
   row-gap: 28px;
-  /* padding-top: 2px; */
 }
 
 .content__card-link {
+  display: block; /* Правило нужно для отображения фона .content__card-link_current. 
+  Т.к. по дефолту ссылка имеет инлайновый тип отображения, на инлайн элементы не действуют фон и размеры */
   text-decoration: none;
   color: #fff;
 }
@@ -239,19 +241,19 @@ input {
 .content__video-card {
   display: flex;
   width: 100%;
-  align-items: start; /* ???? прижав к началу контейнера по дополнительной оси.  */
+  align-items: start; /* прижать к началу контейнера по дополнительной оси.  */
 }
 
-.content__video-card:hover {
+.content__card-link:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 
-.content__video-card:focus {
+.content__card-link:focus {
   outline: none;
 }
 
-.content__video-card:focus-visible {
+.content__card-link:focus-visible {
   outline: 1px solid #fff;
 }
 
@@ -292,13 +294,12 @@ input {
   overflow: hidden;
 }
 
+
 .content__card-link_current {
-  display: block;  /* Если не прописать, фон не видно */
   background-color: #545050;
 }
 
-.content__card-link_current:active {
-  display: block; 
+.content__card-link:active {
   background-color: #545050;
 }
 
